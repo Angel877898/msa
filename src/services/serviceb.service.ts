@@ -6,6 +6,8 @@ export interface Serviceb {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
+  getZone(zone: number): Promise<object>;
+  getPrice(zone: number): Promise<object>;
 }
 
 export class ServicebProvider implements Provider<Serviceb> {
@@ -13,7 +15,7 @@ export class ServicebProvider implements Provider<Serviceb> {
     // serviceb must match the name property in the datasource json file
     @inject('datasources.serviceb')
     protected dataSource: ServicebDataSource = new ServicebDataSource(),
-  ) {}
+  ) { }
 
   value(): Promise<Serviceb> {
     return getService(this.dataSource);
