@@ -7,6 +7,7 @@ export interface Servicec {
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
   getZone(zone: number): Promise<object>;
+  getPrice(zone: number): Promise<object>;
 }
 
 export class ServicecProvider implements Provider<Servicec> {
