@@ -15,8 +15,8 @@ export class GetPricesController {
 
   @get('/getprice')
   async getprice(
-    @param.path.string("postalcode") postalcode: number,
-    @param.path.string("zone") zone: number,
+    @param.path.number("postalcode") postalcode: number,
+    @param.path.number("zone") zone: number,
   ): Promise<Number> {
     const getZone = await this.serviceb.getZone(postalcode)
     const getPrice = await this.serviceb.getPrice(zone)
