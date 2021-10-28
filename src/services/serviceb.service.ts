@@ -6,7 +6,6 @@ export interface Serviceb {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
-  getZone(zone: number): Promise<object>;
   getPrice(zone: number): Promise<object>;
 }
 

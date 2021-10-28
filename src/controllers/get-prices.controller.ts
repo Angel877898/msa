@@ -4,22 +4,22 @@
 
 import {inject} from '@loopback/context';
 import {get, param} from '@loopback/rest';
-import {Serviceb} from '../services';
+import {Serviceb, Servicec} from '../services';
 
 
 export class GetPricesController {
   constructor(
     @inject('service.Serviceb')
-    protected serviceb: Serviceb
+    protected serviceb: Serviceb,
+    protected servicec: Servicec
   ) { }
 
   @get('/getprice')
   async getprice(
     @param.path.number("postalcode") postalcode: number,
-    @param.path.number("zone") zone: number,
   ): Promise<Number> {
-    const getZone = await this.serviceb.getZone(postalcode)
-    const getPrice = await this.serviceb.getPrice(zone)
+    const getZone = await this.servicec.getZone(postalcode)
+    const getPrice = await this.serviceb.getPrice(postalcode)
     let finalPrice = Number(getPrice)
     let zona = Number(getZone)
     if (zona === 1) {
