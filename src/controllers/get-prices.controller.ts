@@ -9,7 +9,7 @@ import {ServiceC} from '../services';
 
 export class GetPricesController {
   constructor(
-    @inject('service.ServiceC')
+    @inject('services.ServiceC')
     protected servicec: ServiceC
   ) { }
 

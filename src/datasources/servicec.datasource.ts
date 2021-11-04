@@ -35,11 +35,8 @@ const config = {
           weight: "{weight}",
         }
       },
-      "functions": {
-        "postFunction": [
-          "postalcode",
-          "weight",
-        ]
+      functions: {
+        calcularenvio: ["postalcode", "weight"]
       }
     }
   ]
