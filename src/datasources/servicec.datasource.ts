@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'servicec',
   connector: 'rest',
-  baseURL: 'https://servicec.com',
+  baseURL: 'https://microservicioc.herokuapp.com/',
   crud: false,
   options: {
     headers: {
@@ -13,13 +13,33 @@ const config = {
     }
   },
   operations: [
+    // {
+    //   template: {
+    //     method: "GET",
+    //     url: "https://microservicioc.herokuapp.com/{postalcode}"
+    //   },
+    //   functions: {
+    //     calcularenvio: ["postalcode"]
+    //   }
+    // },
     {
       template: {
-        method: "GET",
-        url: "https://serviceb.com/getstate/{cp}"
+        method: "POST",
+        url: "https://microservicioc.herokuapp.com/calcularenvio",
+        headers: {
+          "accepts": "application/json",
+          "content-type": "application/json"
+        },
+        json: {
+          postalcode: "{postalcode}",
+          weight: "{weight}",
+        }
       },
-      functions: {
-        getState: ["cp"]
+      "functions": {
+        "postFunction": [
+          "postalcode",
+          "weight",
+        ]
       }
     }
   ]
