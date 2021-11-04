@@ -13,8 +13,8 @@ export class SetpriceController {
   async getprice(
     @param.path.string("postalcode") postalcode: string,
     @param.path.number("weight") weight: number,
-  ): Promise<Number> {
-    const {idZone, costodeEnvio}: any = await this.serviceC.calcularenvio(postalcode, weight)
+  ): Promise<Object> {
+    const {idZone, costodeEnvio, tiempoEnvio, couponIsValid, descuentosAplicados, precioFinalEnvio}: any = await this.serviceC.calcularenvio(postalcode, weight)
 
     let finalPrice = costodeEnvio
     if (idZone === 1) {
@@ -38,7 +38,14 @@ export class SetpriceController {
       let comision = finalPrice * 0.05
       finalPrice = finalPrice + iva + comision
     }
-
-    return finalPrice
+    let r = {
+      idZone: idZone,
+      tiempoEnvio: tiempoEnvio,
+      costodeEnvio: costodeEnvio,
+      couponIsValid: couponIsValid,
+      descuentosAplicados: descuentosAplicados,
+      precioFinalEnvio: finalPrice
+    }
+    return r
   }
 }
