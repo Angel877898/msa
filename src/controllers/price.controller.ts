@@ -8,7 +8,7 @@ import {
 } from '@loopback/repository';
 import {
   get,
-  getModelSchemaRef, param, post, requestBody, response
+  getModelSchemaRef, param, response
 } from '@loopback/rest';
 import {Price} from '../models';
 import {PriceRepository} from '../repositories';
@@ -19,26 +19,26 @@ export class PriceController {
     public priceRepository: PriceRepository,
   ) { }
 
-  @post('/prices')
-  @response(200, {
-    description: 'Price model instance',
-    content: {'application/json': {schema: getModelSchemaRef(Price)}},
-  })
-  async create(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Price, {
-            title: 'NewPrice',
+  // @post('/prices')
+  // @response(200, {
+  //   description: 'Price model instance',
+  //   content: {'application/json': {schema: getModelSchemaRef(Price)}},
+  // })
+  // async create(
+  //   @requestBody({
+  //     content: {
+  //       'application/json': {
+  //         schema: getModelSchemaRef(Price, {
+  //           title: 'NewPrice',
 
-          }),
-        },
-      },
-    })
-    price: Price,
-  ): Promise<Price> {
-    return this.priceRepository.create(price);
-  }
+  //         }),
+  //       },
+  //     },
+  //   })
+  //   price: Price,
+  // ): Promise<Price> {
+  //   return this.priceRepository.create(price);
+  // }
 
   @get('/prices/count')
   @response(200, {
